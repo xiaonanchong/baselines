@@ -14,6 +14,10 @@ from baselines.common.tf_util import get_session
 from baselines import logger
 from importlib import import_module
 
+## cxn : add to plot simulation result
+import matplotlib.pyplot as plt
+plt.switch_backend('agg')
+
 try:
     from mpi4py import MPI
 except ImportError:
@@ -220,6 +224,14 @@ def main(args):
         model.save(save_path)
 
     if args.play:
+        
+        ####################### cxn #######################
+        plt.rcParams['figure.figsize'] = [15, 10]
+        
+        plt.xlabel('time step / every 15 minutes')
+        plt.ylabel('centigrade degrees, ten kilowatts')
+        ###################################################
+        
         logger.log("Running trained model")
         obs = env.reset()
 
@@ -227,13 +239,23 @@ def main(args):
         dones = np.zeros((1,))
 
         episode_rew = 0
-        while True:
+        for i in range(96*7):
             if state is not None:
                 actions, _, state, _ = model.step(obs,S=state, M=dones)
             else:
                 actions, _, _, _ = model.step(obs)
 
             obs, rew, done, _ = env.step(actions)
+            
+            ####################### cxn #######################
+            wZoneTemp = obs[1]
+            eZoneTemp = obs[2]
+            hvacPow = obs[5]
+            plt.plot(0, wZoneTemp, 'bo', label='westzone temperature')
+            plt.plot(0, eZoneTemp, 'ro', label='eastzone temperature')
+            plt.plot(0, hvacPow, 'g*', label='HVAC Power consumption')
+            ###################################################
+            
             episode_rew += rew[0] if isinstance(env, VecEnv) else rew
             env.render()
             done = done.any() if isinstance(done, np.ndarray) else done
@@ -241,6 +263,13 @@ def main(args):
                 print('episode_rew={}'.format(episode_rew))
                 episode_rew = 0
                 obs = env.reset()
+                
+        ####################### cxn #######################
+        average_return = episode_rew
+        plt.title('Running trained model, return = ', str(average_return))
+        plt.legend()
+        plt.savefig('test_baseline_model.png')
+        ####################### cxn #######################
 
     env.close()
 
