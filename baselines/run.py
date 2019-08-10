@@ -251,12 +251,13 @@ def main(args):
             obs, rew, done, _ = env.step(actions)
             
             ####################### cxn #######################
+            print(obs)
             wZoneTemp = obs[1]
             eZoneTemp = obs[2]
             hvacPow = obs[5]
-            plt.plot(0, wZoneTemp, 'bo', label='westzone temperature')
-            plt.plot(0, eZoneTemp, 'ro', label='eastzone temperature')
-            plt.plot(0, hvacPow, 'g*', label='HVAC Power consumption')
+            plt.plot(i+1, wZoneTemp, 'bo', label='westzone temperature')
+            plt.plot(i=1, eZoneTemp, 'ro', label='eastzone temperature')
+            plt.plot(i+1, hvacPow, 'g*', label='HVAC Power consumption')
             ###################################################
             
             episode_rew += rew[0] if isinstance(env, VecEnv) else rew
