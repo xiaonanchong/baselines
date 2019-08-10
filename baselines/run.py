@@ -252,9 +252,9 @@ def main(args):
             
             ####################### cxn #######################
             print(obs)
-            wZoneTemp = obs[1]
-            eZoneTemp = obs[2]
-            hvacPow = obs[5]
+            wZoneTemp = obs[0][1]
+            eZoneTemp = obs[0][2]
+            hvacPow = obs[0][5]
             plt.plot(i+1, wZoneTemp, 'bo', label='westzone temperature')
             plt.plot(i+1, eZoneTemp, 'ro', label='eastzone temperature')
             plt.plot(i+1, hvacPow, 'g*', label='HVAC Power consumption')
