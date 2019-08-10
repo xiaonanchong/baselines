@@ -229,7 +229,7 @@ def main(args):
         ####################### cxn #######################
         plt.rcParams['figure.figsize'] = [15, 10]
 
-         plt.xlabel('time step / every 15 minutes')
+        plt.xlabel('time step / every 15 minutes')
         plt.ylabel('centigrade degrees, ten kilowatts')
         ###################################################
         
