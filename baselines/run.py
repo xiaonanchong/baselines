@@ -252,8 +252,9 @@ def main(args):
                 actions, _, _, _ = model.step(obs)
             
             ####################### cxn #######################
-            actions[0][2] = actions[0][0]
-            actions[0][3] = actions[0][1]
+            if obs[0][2] > 25: 
+                actions[0][2] = -1
+                actions[0][3] = 0
             ###################################################
             obs, rew, done, _ = env.step(actions)
             
