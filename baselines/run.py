@@ -253,7 +253,7 @@ def main(args):
             
             ####################### cxn #######################
             if obs[0][2] > 25: 
-                actions[0][1] = actions[0][0]
+                actions[0][1] = 0#actions[0][0]
                 actions[0][3] = actions[0][2]
             ###################################################
             obs, rew, done, _ = env.step(actions)
@@ -262,7 +262,7 @@ def main(args):
             #print(obs)
             wZoneTemp = obs[0][1]
             eZoneTemp = obs[0][2]
-            hvacPow = (obs[0][5]/1e6)*10
+            hvacPow = (obs[0][5]/1e6)*100
             plt.plot(i+1, wZoneTemp, 'bo')
             plt.plot(i+1, eZoneTemp, 'ro')
             plt.plot(i+1, hvacPow, 'g^')
