@@ -251,7 +251,7 @@ def main(args):
             obs, rew, done, _ = env.step(actions)
             
             ####################### cxn #######################
-            print(obs)
+            #print(obs)
             wZoneTemp = obs[0][1]
             eZoneTemp = obs[0][2]
             hvacPow = obs[0][5]
@@ -269,10 +269,10 @@ def main(args):
                 obs = env.reset()
                 
         ####################### cxn #######################
-        average_return = episode_rew
-        plt.title('Running trained model, return = ', str(average_return))
+        print('added rewards', episode_rew)
+        #plt.title('Running trained model')
         plt.legend()
-        plt.savefig('test_baseline_model.png')
+        plt.savefig('run_baseline_model.png')
         ####################### cxn #######################
 
     env.close()
