@@ -230,7 +230,7 @@ def main(args):
         plt.rcParams['figure.figsize'] = [15, 10]
 
         plt.xlabel('time step / every 15 minutes')
-        plt.ylabel('centigrade degrees, ten kilowatts')
+        plt.ylabel('centigrade degrees, mega kilowatts')
         ###################################################
         
         logger.log("Running trained model")
@@ -241,6 +241,9 @@ def main(args):
 
         episode_rew = 0
         ####################### cxn #######################
+        plt.plot(0, wZoneTemp, 'bo', label='westzone temperature')
+        plt.plot(0, eZoneTemp, 'ro', label='eastzone temperature')
+        plt.plot(0, hvacPow, 'g*', label='HVAC Power consumption')
         for i in range(96*7):
         ###################################################
             if state is not None:
@@ -254,10 +257,10 @@ def main(args):
             #print(obs)
             wZoneTemp = obs[0][1]
             eZoneTemp = obs[0][2]
-            hvacPow = obs[0][5]
-            plt.plot(i+1, wZoneTemp, 'bo', label='westzone temperature')
-            plt.plot(i+1, eZoneTemp, 'ro', label='eastzone temperature')
-            plt.plot(i+1, hvacPow, 'g*', label='HVAC Power consumption')
+            hvacPow = obs[0][5]/1e6
+            plt.plot(i+1, wZoneTemp, 'bo')
+            plt.plot(i+1, eZoneTemp, 'ro')
+            plt.plot(i+1, hvacPow, 'g*')
             ###################################################
             
             episode_rew += rew[0] if isinstance(env, VecEnv) else rew
