@@ -250,7 +250,10 @@ def main(args):
                 actions, _, state, _ = model.step(obs,S=state, M=dones)
             else:
                 actions, _, _, _ = model.step(obs)
-
+            
+            ####################### cxn #######################
+            actions[0][3] = 1
+            ###################################################
             obs, rew, done, _ = env.step(actions)
             
             ####################### cxn #######################
