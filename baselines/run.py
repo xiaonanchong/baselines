@@ -252,8 +252,8 @@ def main(args):
                 actions, _, _, _ = model.step(obs)
             
             ####################### cxn #######################
-            action[0][2] = action[0][0]
-            actions[0][3] = action[0][1]
+            actions[0][2] = actions[0][0]
+            actions[0][3] = actions[0][1]
             ###################################################
             obs, rew, done, _ = env.step(actions)
             
