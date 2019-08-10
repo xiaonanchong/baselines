@@ -241,9 +241,9 @@ def main(args):
 
         episode_rew = 0
         ####################### cxn #######################
-        plt.plot(0, wZoneTemp, 'bo', label='westzone temperature')
-        plt.plot(0, eZoneTemp, 'ro', label='eastzone temperature')
-        plt.plot(0, hvacPow, 'g*', label='HVAC Power consumption')
+        plt.plot(0, 0, 'bo', label='westzone temperature')
+        plt.plot(0, 0, 'ro', label='eastzone temperature')
+        plt.plot(0, 0, 'g*', label='HVAC Power consumption')
         for i in range(96*7):
         ###################################################
             if state is not None:
