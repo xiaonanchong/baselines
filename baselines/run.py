@@ -261,6 +261,7 @@ def main(args):
             plt.plot(i+1, wZoneTemp, 'bo')
             plt.plot(i+1, eZoneTemp, 'ro')
             plt.plot(i+1, hvacPow, 'g*')
+            print(actions)
             ###################################################
             
             episode_rew += rew[0] if isinstance(env, VecEnv) else rew
