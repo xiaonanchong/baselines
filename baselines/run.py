@@ -282,6 +282,7 @@ def main(args):
         #plt.title('Running trained model')
         plt.legend()
         plt.savefig('run_baseline_model.png')
+        print('save the simulation result in run_baseline_model.png')
         ####################### cxn #######################
 
     env.close()
