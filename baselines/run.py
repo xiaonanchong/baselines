@@ -281,7 +281,7 @@ def main(args):
         print('added rewards', episode_rew)
         #plt.title('Running trained model')
         plt.legend()
-        plt.savefig('run_baseline_model.png')
+        plt.savefig(args.alg+'_test.png')
         print('save the simulation result in run_baseline_model.png')
         ####################### cxn #######################
 
